@@ -20,7 +20,8 @@ jobs:
           username: ubuntu
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd ~/devops-project/HN_KS23B_HaHuyenTrang_002
-            git pull
-            docker-compose down
-            docker-compose up -d --build
+            cd devops-project/HN_KS23B_HaHuyenTrang_002
+  git pull
+  docker-compose down
+  docker-compose build --no-cache
+  docker-compose up -d
