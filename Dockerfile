@@ -1,0 +1,20 @@
+# Stage 1: build React
+FROM node:18 as build
+
+WORKDIR /app
+
+COPY frontend/package*.json ./
+
+RUN npm install
+
+COPY frontend .
+
+RUN npm run build
+
+
+# Stage 2: nginx serve
+FROM nginx:alpine
+
+COPY --from=build /app/build /usr/share/nginx/html
+
+EXPOSE 80
